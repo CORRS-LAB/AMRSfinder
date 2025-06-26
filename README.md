@@ -428,4 +428,145 @@ cov.mod <- NULL
 
 ## run AMRfinder
 nfo <- AMR.finder(intput_dat, y, cov.mod)
+
+
+####### ewas
+
+cortest<-function(intput_dat,y,cov.mod,a,b){
+  x<-as.numeric(colMeans(intput_dat[a:b,-c(1,2)]))
+  y <-as.numeric(y[,1])
+  if (!is.null(cov.mod)){
+       lm.dat <- data.frame(y,x,cov.mod)
+  }else{
+       lm.dat <- data.frame(y,x)
+  }         
+  fit <- summary(lm(y~.,data = lm.dat))
+  p_value<-fit$coef[2,4]
+  coef_lm<-fit$coef[2,1]
+  se_lm <- fit$coef[2,2]
+  cor_est<-cor(y,x) 
+  ret_ks<-c(p_value,coef_lm, se_lm, cor_est)
+  return(ret_ks)
+}
+
+
+ewas <- function(intput_dat, y, cov.mod){
+  out <- NULL
+  for(i in 1:nrow(intput_dat)){
+    out <- rbind(out, cortest(intput_dat,y, cov.mod, i,i))
+  }
+  colnames(out) <- c("p_value", "coef_lm", "se_lm" ,"cor_est")
+  res <- data.frame(intput_dat[,1:2], out)
+  res$FDR <- p.adjust(res$p_value, method = "BH")
+  return(res)
+}
+
+nfo <- ewas(intput_dat, y, cov.mod)
+
+
+######
+
+library(dmrff)
+
+dmrff_region_origin <- dmrff(estimate=nfo$coef_lm,
+                     se=nfo$se_lm,
+                     p.value=nfo$p_value,
+                     methylation=as.matrix(intput_dat[,-c(1,2)]),
+                     chr=nfo$chr,
+                     pos=nfo$pos,
+                     maxgap=300,
+                     verbose=T)
+dmrff_region_origin <- dmrff_region_origin[, c("chr","start","end","n","estimate","se","p.value")]
+
+
+ dmrff_region_origin$start.idx <- match(dmrff_region_origin$start, intput_dat$pos)
+ dmrff_region_origin$end.idx <- match(dmrff_region_origin$end, intput_dat$pos)
+
+  result <- t(apply(dmrff_region_origin, 1, function(row) {
+    a <- as.integer(row["start.idx"])
+    b <- as.integer(row["end.idx"])
+    cortest(intput_dat, y, cov.mod, a, b)
+  }))
+  
+  dmrff_region_origin[, c("p_value_lm","coef_lm", "cor_est")] <- result[, c(1,2,4)]
+  
+  
+  dmrff_region <- dmrff_region_origin[, c("chr", "start", "end", "n", 
+                                          "estimate", "p.value", "p_value_lm",
+                                          "coef_lm", "cor_est")]
+
+  names(dmrff_region)[c(4:6)] <-  c("#CpGs", "estimate_dmrff", "p_value_dmrff")
+  
+  
+###### generate window data with 100bp
+
+library(GenomicRanges)
+library(IRanges)
+
+
+dat <- readRDS("bulk.sub.txt.20.Rds")
+gr <- GRanges(data.frame(chr = "chr21", start = dat[,2], end = dat[,2], dat[,-c(1,2)]))
+
+cutpoint <- seq(dat[1,2],dat[nrow(dat),2],by=100)
+start <- cutpoint
+end <- c(cutpoint[-length(cutpoint)]+99, dat[nrow(dat),2])
+
+wds <- GRanges(data.frame(chr = "chr21", start, end))
+
+
+hits.df <- as.data.frame(findOverlaps(wds, gr)) 
+revmap <- IntegerList(tapply(hits.df[,2], hits.df[,1], unique))
+
+wds <- wds[as.numeric(revmap@partitioning@NAMES),]
+wds$revmap <- revmap
+
+
+ids <- colnames(dat)[-c(1:2)]
+sum.count <- NULL
+for(i in 1:length(ids)){
+   tmp <- mean(extractList(dat[,i+2], wds$revmap))
+   sum.count <- cbind(sum.count,tmp)
+}
+colnames(sum.count) <- colnames(dat)[-c(1:2)]
+
+wds.out <- data.frame(wds)
+out <- data.frame(chr = wds.out[,1], wds.out[,c(2,3)], sum.count)
+write.table(out, "bulk.sub.100bpWindows.20.txt", row.names = F, sep = "\t", quote = F)
+
+
+######## EWAS 100bp
+
+cortest<-function(intput_dat,y,cov.mod,a,b){
+  x<-as.numeric(colMeans(intput_dat[a:b,-c(1:3)]))
+  y <-as.numeric(y[,1])
+  if (!is.null(cov.mod)){
+       lm.dat <- data.frame(y,x,cov.mod)
+  }else{
+       lm.dat <- data.frame(y,x)
+  }         
+  fit <- summary(lm(y~.,data = lm.dat))
+  p_value<-fit$coef[2,4]
+  coef_lm<-fit$coef[2,1]
+  cor_est<-cor(y,x) 
+  ret_ks<-c(p_value,coef_lm, cor_est)
+  return(ret_ks)
+}
+
+
+ewas.regions <- function(intput_dat, y, cov.mod){
+  out <- NULL
+  for(i in 1:nrow(intput_dat)){
+    out <- rbind(out, cortest(intput_dat,y, cov.mod, i,i))
+  }
+  colnames(out) <- c("p_value", "coef_lm", "cor_est")
+  res <- data.frame(intput_dat[,1:3], out)
+  res$FDR <- p.adjust(res$p_value, method = "BH")
+  return(res)
+}
+
+####
+intput_dat <-read.table("bulk.sub.100bpWindows.20.txt", header = T)
+
+nfo <- ewas.regions(intput_dat, y, cov.mod)
+
 ```
