@@ -1,2 +1,4 @@
+export(findMaxZC)
+importFrom(Rcpp, sourceCpp)
+useDynLib(AMRs.finder, .registration = TRUE)
 export("AMR.finder")
-
