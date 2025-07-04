@@ -2,7 +2,7 @@ Package: AMRs.finder
 Version: 0.0.1
 Date: 2025-07-04
 Title: AMR Segmentation Finder
-Author: Yifan Yang <yfyang.86@hotmail.com>
+Author: Xiaoqing Pan, Yifan Yang <yfyang.86@hotmail.com>
 Maintainer: Yifan Yang <yfyang.86@hotmail.com>
 Description: A package for finding segmentation in DNA methylation data using the AMR method.
 License: Apache License 2.0

@@ -5,8 +5,9 @@
 ## Install
 
 ```sh
-git pull 
-R CMD INSTALL pack
+git pull https://github.com/CORRS-LAB/AMRs.finder
+cd AMRs.finder
+R CMD INSTALL package
 ```
 
 ## Demo
