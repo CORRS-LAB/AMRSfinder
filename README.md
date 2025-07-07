@@ -53,6 +53,6 @@ graph TD;
   A[ewas]
   B[dmrff]
   C--->D
-  C["Data Generation"]
-  D["Calculation"]
+  C["100bp(Data Generation)"]
+  D["100bp(Calculation)"]
 ```
