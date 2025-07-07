@@ -22,7 +22,7 @@ y <- data.frame(y=rpois(20, 50))
 ## define covariate matrix
 cov.mod <- NULL
 library(AMRs.finder)
-nfo <- AMR.finder(input_dat, y, cov.mod)
+nfo <- AMR.finder(intput_dat, y, cov.mod)
 head(nfo)
 ```
 
