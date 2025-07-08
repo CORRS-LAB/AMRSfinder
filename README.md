@@ -1,6 +1,6 @@
 # AMRs.finder
 
-[TODO]: Description
+AMRfinder (Associated Methylation Region finder) is a novel algorithm specifically designed to identify phenotype-associated methylation regions (especially for RRBS data).
 
 ## Install
 
