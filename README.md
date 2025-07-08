@@ -49,22 +49,10 @@ The Result is as following:
 | 100bp-cal | [Calculation](./scripts/demo-100bp-cal.R) | depends on Data-generation |
 
 ```mermaid
+
 graph TD;
-  
-  A--->B
-  A["CpGs & phenotype"]
-  B[ewas]
-
-  A--->C
-  A["CpGs & phenotype"]
-  C[dmrff]
-
-  A  A--->B
-  A["CpGs & phenotype"]
-  B[ewas]
-
-  A--->C--->D
-  A["CpGs & phenotype"]
-  C["100bp(Data Generation) & phenotype"]
-  D["100bp (calculation)"]
+  A["CpGs & Phenotype"] --> B[EWAS]
+  A --> C[dmrff]
+  A --> D["100bp (Data Generation)"]
+  D --> E["100bp (Calculation)"]
 ```
