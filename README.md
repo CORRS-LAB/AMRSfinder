@@ -50,9 +50,21 @@ The Result is as following:
 
 ```mermaid
 graph TD;
-  A[ewas]
-  B[dmrff]
-  C--->D
-  C["100bp(Data Generation)"]
-  D["100bp(Calculation)"]
+  
+  A--->B
+  A["CpGs & phenotype"]
+  B[ewas]
+
+  A--->C
+  A["CpGs & phenotype"]
+  C[dmrff]
+
+  A  A--->B
+  A["CpGs & phenotype"]
+  B[ewas]
+
+  A--->C--->D
+  A["CpGs & phenotype"]
+  C["100bp(Data Generation) & phenotype"]
+  D["100bp (calculation)"]
 ```
