@@ -44,7 +44,7 @@ The Result is as following:
 | Demo | Link | Comments |
 |:-----|:-----|:---------|
 | ewas | [ewas](./scripts/demo-ewas.R) | |
-| dmrff | [dmrff](./scripts/demo-dmrff.R) | `dmrff` is a [baseline method](https://doi.org/10.1101/508556). Install [dmrff](https://github.com/perishky/dmrff) first.|
+| dmrff | [dmrff](./scripts/demo-dmrff.R) | `dmrff` is referred to (https://doi.org/10.1101/508556). Install [dmrff](https://github.com/perishky/dmrff) first.|
 | 100bp-gen | [Data-generation](./scripts/demo-100bp-generation.R) | |
 | 100bp-cal | [Calculation](./scripts/demo-100bp-cal.R) | depends on Data-generation |
 
