@@ -38,6 +38,21 @@ The Result is as following:
 |chr21 | 9825870| 9825894|     6| -0.2385190| -13.892837| 0.3111941| 0.4334588|    49| 0.4909643|
 |chr21 | 9826120| 9826207|    20| -0.0306179|  -2.452290| 0.8980380| 0.2583344|    49| 0.8980380|
 
+The detailed description of the above output is in the following:
+
+| Output | Description | 
+|:-----|:--------|
+| chr | Chromosome | 
+| start | The start position of a methylation region. | 
+| end | The start position of a methylation region. | 
+| #CpGs | The number of CpG sites.|
+| cor_est | The estimated correlation coefficient. | 
+| coef_lm | The methylation coefficient derived from linear regression analysis. | 
+| p_value |  The methylation P value derived from linear regression analysis. | 
+| methX | Mean DNA methylation level within each region across all samples.|
+| methY | Mean phenotype value within each region across all samples.|
+| FDR | False discovery rate using BH approach.|
+
 
 ## Further example to test ewas and others
 
