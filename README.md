@@ -12,7 +12,7 @@ R CMD INSTALL package
 
 ## Demo
 
-With `AMRs.finder::AMR.finder`, one could perform the following calculation:
+With `AMRfinder::AMR.finder`, one could perform the following calculation:
 
 ```R
 ## Load Demo data
@@ -21,7 +21,7 @@ intput_dat = readRDS("data/bulk.sub.txt.20.Rds")
 y <- data.frame(y=rpois(20, 50))
 ## define covariate matrix
 cov.mod <- NULL
-library(AMRs.finder)
+library(AMRfinder)
 nfo <- AMR.finder(intput_dat, y, cov.mod)
 head(nfo)
 ```
