@@ -1,26 +1,3 @@
-utilsf <- function(type){
-S<-function(s,t,XS){
-	dat<-as.numeric(XS[,2])
-	Sst<-dat[t]
-	if(s>1) Sst<-Sst-dat[s-1]
-	Sst<-abs(Sst)
-	return(Sst)
-}
-U<-function(a,b,s,t,XS){
-	lab<-b-a+1
-	lst<-t-s+1
-	u<-S(a,b,XS)-(lab*S(s,t,XS)/lst)
-	u<-u^2
-	u<-u/(lab*(1-lab/lst))
-	return(u)
-}
-Z<-function(a,b,s,t,XS,mincpgs){
-	if((b-a-mincpgs==0)||((a==s)&&(b==t))||(a==b))  z<-0
-	else z<-U(a,b,s,t,XS)
-	return(z)
-}
-}
-
 findMaxZ<-function(s,t,mincpgs,XS){
 	max<-0
 	a_max_id<-0
