@@ -4,7 +4,7 @@ Date: 2025-07-04
 Title: AMR Segmentation Finder
 Author: Xiaoqing Pan, Yifan Yang <yfyang.86@hotmail.com>
 Maintainer: Yifan Yang <yfyang.86@hotmail.com>
-Description: A package for finding segmentation in DNA methylation data using the AMR method.
+Description: AMRfinder (Associated Methylation Region finder) is a novel algorithm specifically designed to identify phenotype-associated methylation regions (especially for RRBS data). AMRfinder integrates circular binary segmentation with a correlation-based scoring function to dynamically detect methylated blocks most strongly associated with phenotype.
 License: Apache License 2.0
 Depends: R (>= 4.0.0)
 Imports: 
