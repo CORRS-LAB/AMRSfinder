@@ -1,4 +1,4 @@
 import(Rcpp)
-useDynLib(AMRSfinder, .registration = TRUE)
+useDynLib(AMRfinder, .registration = TRUE)
 export(findMaxZC)
 export("AMRfinder")

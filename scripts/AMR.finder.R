@@ -1,4 +1,4 @@
-library(AMRSfinder)
+library(AMRfinder)
 
 intput_dat <- readRDS("data/bulk.sub.txt.20.Rds")
 y <- data.frame(y=rpois(20, 50))

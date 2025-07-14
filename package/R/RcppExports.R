@@ -2,6 +2,6 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 findMaxZ <- function(s, t, mincpgs, XS) {
-    .Call(`_AMRSfinder_findMaxZ`, s, t, mincpgs, XS)
+    .Call(`_AMRfinder_findMaxZ`, s, t, mincpgs, XS)
 }
 

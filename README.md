@@ -2,15 +2,12 @@
 
 AMRfinder (Associated Methylation Region finder) is a novel algorithm specifically designed to identify phenotype-associated methylation regions (especially for RRBS data). AMRfinder integrates circular binary segmentation with a correlation-based scoring function to dynamically detect methylated blocks most strongly associated with phenotype.
 
-- Package: AMRSfinder  (Associated Methylation Region Segmentation finder)
-- Main Method: 
-  - AMRfinder  (Associated Methylation Region finder)
 
 ## Install
 
 ```sh
-git pull https://github.com/CORRS-LAB/AMRs.finder
-cd AMRs.finder
+git pull https://github.com/CORRS-LAB/AMRfinder
+cd AMRfinder
 ## Use Pure R version
 R CMD INSTALL package-r-naive
 ## Use Rcpp version
@@ -21,10 +18,10 @@ For advanced users, we recommend use the Rcpp version for better performance.
 
 ## Demo
 
-With `AMRSfinder::AMRfinder`, one could perform the following calculation:
+With `AMRfinder::AMRfinder`, one could perform the following calculation:
 
 ```R
-library(AMRSfinder)
+library(AMRfinder)
 ## Load Demo data
 intput_dat = readRDS("data/bulk.sub.txt.20.Rds")
 ## generate y

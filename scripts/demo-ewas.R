@@ -1,4 +1,4 @@
-library(AMRSfinder)
+library(AMRfinder)
 ## define covariate matrix
 ## Load Demo data
 intput_dat <- readRDS("data/bulk.sub.txt.20.Rds")

@@ -1,4 +1,4 @@
 library(testthat)
-library(AMRSfinder)
+library(AMRfinder)
 
 test_check("AMRfinder")
