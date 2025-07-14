@@ -1,11 +1,19 @@
-Package: AMRfinder
-Version: 0.0.1
+Package: AMRSfinder
+Version: 0.0.2
 Date: 2025-07-04
-Title: Associated Methylation Region finder
+Title: AMR Segmentation Finder
 Author: Xiaoqing Pan, Juanjie Wu, Yifan Yang <yfyang.86@hotmail.com>
 Maintainer: Yifan Yang <yfyang.86@hotmail.com>
-Description: AMRfinder (Associated Methylation Region finder) is a novel algorithm specifically designed to identify phenotype-associated methylation regions (especially for RRBS data). AMRfinder integrates circular binary segmentation with a correlation-based scoring function to dynamically detect methylated blocks most strongly associated with phenotype. 
+Description: AMRfinder (Associated Methylation Region finder) is a novel algorithm specifically designed to identify phenotype-associated methylation regions (especially for RRBS data). AMRfinder integrates circular binary segmentation with a correlation-based scoring function to dynamically detect methylated blocks most strongly associated with phenotype.
 License: Apache License 2.0
 Depends: R (>= 4.0.0)
-URL: https://github.com/CORRS-LAB/AMRs.finder/AMRs.finder
-BugReports: https://github.com/CORRS-LAB/AMRs.finder/AMRs.finder/issues
+Imports: 
+    Rcpp (>= 1.0.0),
+    RcppEigen
+LinkingTo: 
+    Rcpp,
+    RcppEigen
+RoxygenNote: 7.3.2
+Encoding: UTF-8
+URL: https://github.com/CORRS-LAB/AMRSfinder
+BugReports: https://github.com/CORRS-LAB/AMRSfinder/issues

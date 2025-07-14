@@ -1,11 +1,11 @@
-\name{AMR.finder}
-\alias{AMR.finder}
+\name{AMRfinder}
+\alias{AMRfinder}
 \title{Perform AMR Segmentation Analysis}
 \description{
   A function to perform segmentation analysis on DNA methylation data using the AMR method.
 }
 \usage{
-  AMR.finder(intput_dat, y, cov.mod)
+  AMRfinder(intput_dat, y, cov.mod)
 }
 \arguments{
   \item{intput_dat}{A matrix containing input data with columns 'chr', 'pos', and CpG values.}
@@ -20,7 +20,7 @@
 \examples{
   # Example usage (if test data were available):
   # data <- readRDS("bulk.sub.txt.20.Rds")
-  # result <- AMR.finder(data, y, cov.mod)
+  # result <- AMRfinder(data, y, cov.mod)
 }
 \author{Yifan Yang <yfyang.86@hotmail.com>}
 \seealso{
