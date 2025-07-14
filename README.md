@@ -9,7 +9,7 @@ AMRfinder (Associated Methylation Region finder) is a novel algorithm specifical
 ## Install
 
 ```sh
-git pull https://github.com/CORRS-LAB/AMRs.finder
+git clone https://github.com/CORRS-LAB/AMRs.finder
 cd AMRs.finder
 R CMD INSTALL package
 ```
