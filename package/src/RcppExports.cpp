@@ -13,7 +13,7 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 
 // findMaxZ
 IntegerVector findMaxZ(int s, int t, int mincpgs, const Eigen::MatrixXd& XS);
-RcppExport SEXP _AMRs_finder_findMaxZ(SEXP sSEXP, SEXP tSEXP, SEXP mincpgsSEXP, SEXP XSSEXP) {
+RcppExport SEXP _AMRSfinder_findMaxZ(SEXP sSEXP, SEXP tSEXP, SEXP mincpgsSEXP, SEXP XSSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -27,11 +27,11 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_AMRs_finder_findMaxZ", (DL_FUNC) &_AMRs_finder_findMaxZ, 4},
+    {"_AMRSfinder_findMaxZ", (DL_FUNC) &_AMRSfinder_findMaxZ, 4},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_AMRs_finder(DllInfo *dll) {
+RcppExport void R_init_AMRSfinder(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }

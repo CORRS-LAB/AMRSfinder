@@ -1,6 +1,10 @@
-# AMRs.finder
+# AMRSfinder
 
 AMRfinder (Associated Methylation Region finder) is a novel algorithm specifically designed to identify phenotype-associated methylation regions (especially for RRBS data). AMRfinder integrates circular binary segmentation with a correlation-based scoring function to dynamically detect methylated blocks most strongly associated with phenotype.
+
+- Package: AMRSfinder  (Associated Methylation Region Segmentation finder)
+- Main Method: 
+  - AMRfinder  (Associated Methylation Region finder)
 
 ## Install
 
@@ -12,17 +16,17 @@ R CMD INSTALL package
 
 ## Demo
 
-With `AMRfinder::AMR.finder`, one could perform the following calculation:
+With `AMRSfinder::AMRfinder`, one could perform the following calculation:
 
 ```R
+library(AMRSfinder)
 ## Load Demo data
 intput_dat = readRDS("data/bulk.sub.txt.20.Rds")
 ## generate y
 y <- data.frame(y=rpois(20, 50))
 ## define covariate matrix
 cov.mod <- NULL
-library(AMRfinder)
-nfo <- AMR.finder(intput_dat, y, cov.mod)
+nfo <- AMRfinder(intput_dat, y, cov.mod)
 head(nfo)
 ```
 
@@ -54,20 +58,21 @@ The detailed description of the above output is in the following:
 | FDR | False discovery rate using BH approach.|
 
 
-## Further example to test ewas and others
+## Further examples to test ewas and others
 
 | Demo | Link | Comments |
 |:-----|:-----|:---------|
+| AMRfinder | [AMRfinder](./scripts/AMR.finder.R) | Perform AMRfinder, and calculate the BH type FDR.|
 | ewas | [ewas](./scripts/demo-ewas.R) |  Perform correlation and linear regression analyses to each CpG site.|
-| dmrff | [dmrff](./scripts/demo-dmrff.R) | Dynamically identify methylation regions associated with phenotype using `dmrff`. Install [dmrff](https://github.com/perishky/dmrff) (referred to https://doi.org/10.1101/508556) first.|
+| dmrff | [dmrff](./scripts/demo-dmrff.R) | Dynamically identify methylation regions associated with phenotype using `dmrff`. Install [dmrff](https://github.com/perishky/dmrff) (referred to https://doi.org/10.1101/508556) first. Run `demo-ewas.R` first to initialize the objetcs.|
 | 100bp-gen | [Data-generation](./scripts/demo-100bp-generation.R) |  Segment CpG sites into non-overlapping 100bp genomic regions.|
-| 100bp-cal | [Calculation](./scripts/demo-100bp-cal.R) | Perform correlation and linear regression analyses to 100bp genomic regions.|
+| 100bp-cal | [Calculation](./scripts/demo-100bp-cal.R) | Perform correlation and linear regression analyses to 100bp genomic regions. Run `emo-100bp-generation.R` first to generate data.|
 
 ```mermaid
-
 graph TD;
   A["CpGs & Phenotype"] --> B[EWAS]
   A --> C[dmrff]
   A --> D["100bp (Data Generation)"]
   D --> E["100bp (Calculation)"]
+  A --> F["AMRfinder"]
 ```

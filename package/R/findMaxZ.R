@@ -33,5 +33,5 @@ findMaxZC <- function(s, t, mincpgs, XS) {
     mincpgs <- as.integer(mincpgs)
     
     # Call the C++ function
-    .Call(`_AMRs_finder_findMaxZ`, s, t, mincpgs, XS)
+    .Call(`_AMRSfinder_findMaxZ`, s, t, mincpgs, XS)
 }
