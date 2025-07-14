@@ -6,15 +6,19 @@ AMRfinder (Associated Methylation Region finder) is a novel algorithm specifical
 ## Install
 
 ```sh
-git pull https://github.com/CORRS-LAB/AMRfinder
+git clone https://github.com/CORRS-LAB/AMRfinder
 cd AMRfinder
 ## Use Pure R version
 R CMD INSTALL package-r-naive
-## Use Rcpp version
-R CMD INSTALL package
 ```
 
 For advanced users, we recommend use the Rcpp version for better performance.
+
+```sh
+## Use Rcpp version
+## you may need to install Rcpp and RcppEigen first
+R CMD INSTALL package
+```
 
 ## Demo
 
