@@ -80,7 +80,7 @@ The dependencies are:
 graph TD;
   A["CpGs & Phenotype"] --> B[EWAS]
   A --> C[dmrff]
-  A --> D["100bp (Data Generation)"]
-  D --> E["100bp (Calculation)"]
+  A --> D["100bp (Windows splitting)"]
+  D --> E["100bp (Identifying AMRs)"]
   A --> F["AMRfinder"]
 ```
