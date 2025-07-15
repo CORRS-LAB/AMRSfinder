@@ -70,8 +70,8 @@ The detailed description of the above output is in the following:
 | AMRfinder | [AMRfinder](./scripts/AMR.finder.R) | Perform AMRfinder, and calculate the BH type FDR.|
 | ewas | [ewas](./scripts/demo-ewas.R) |  Perform correlation and linear regression analyses to each CpG site.|
 | dmrff | [dmrff](./scripts/demo-dmrff.R) | Dynamically identify methylation regions associated with phenotype using `dmrff`. Install [dmrff](https://github.com/perishky/dmrff) (referred to https://doi.org/10.1101/508556) first. Run `demo-ewas.R` first to initialize the objetcs.|
-| 100bp-gen | [Data-generation](./scripts/demo-100bp-generation.R) |  Segment CpG sites into non-overlapping 100bp genomic regions.|
-| 100bp-cal | [Calculation](./scripts/demo-100bp-cal.R) | Perform correlation and linear regression analyses to 100bp genomic regions. Run `emo-100bp-generation.R` first to generate data.|
+| 100bp-gen | [Windows splitting](./scripts/demo-100bp-generation.R) |  Segment CpG sites into non-overlapping 100bp genomic regions.|
+| 100bp-cal | [Identifying AMRs](./scripts/demo-100bp-cal.R) | Perform correlation and linear regression analyses to 100bp genomic regions. Run `emo-100bp-generation.R` first to generate data.|
 
 
 The dependencies are:
