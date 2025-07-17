@@ -38,7 +38,7 @@ head(nfo)
 
 The Result is as following:
 
-|chr   |   start|     end| #CpGs|    cor_est|    coef_lm|   p_value|     methX| methY|       FDR|
+|chr   |   start|     end| N.CpGs|    cor_est|    coef_lm|   p_value|     methX| methY|       FDR|
 |:-----|-------:|-------:|-----:|----------:|----------:|---------:|---------:|-----:|---------:|
 |chr21 | 9437431| 9437538|    14|  0.5832074|  38.328544| 0.0069528| 0.6017233|    49| 0.2759106|
 |chr21 | 9825466| 9825568|    12|  0.1596132|  11.463980| 0.5014693| 0.2783314|    49| 0.6066556|
@@ -54,7 +54,7 @@ The detailed description of the above output is in the following:
 | chr | Chromosome | 
 | start | The start position of a methylation region. | 
 | end | The start position of a methylation region. | 
-| #CpGs | The number of CpG sites.|
+| N.CpGs | The number of CpG sites.|
 | cor_est | The estimated correlation coefficient. | 
 | coef_lm | The methylation coefficient derived from linear regression analysis. | 
 | p_value |  The methylation P value derived from linear regression analysis. | 
