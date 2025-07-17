@@ -37,7 +37,7 @@ dmrff_region <- dmrff_region_origin[, c(
     "coef_lm", "cor_est"
 )]
 
-names(dmrff_region)[c(4:6)] <- c("#CpGs", "estimate_dmrff", "p_value_dmrff")
+names(dmrff_region)[c(4:6)] <- c("N.CpGs", "estimate_dmrff", "p_value_dmrff")
 
 # Expected results (leading six rows)
 #     chr    start      end N.CpGs estimate_dmrff p_value_dmrff p_value_lm    coef_lm    cor_est
