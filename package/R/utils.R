@@ -35,21 +35,75 @@ noValley <- function(S, s, t, mincpgs, valley) {
     return(1)
 }
 
-cortest <- function(intput_dat, y, cov.mod, a, b) {
-    x <- as.numeric(colMeans(intput_dat[a:b, -c(1, 2)]))
-    y <- as.numeric(y[, 1])
-    if (!is.null(cov.mod)) {
-        lm.dat <- data.frame(y, x, cov.mod)
-    } else {
-        lm.dat <- data.frame(y, x)
-    }
-    fit <- summary(lm(y ~ ., data = lm.dat))
-    p_value <- fit$coef[2, 4]
-    coef_lm <- fit$coef[2, 1]
-    cor_est <- cor(y, x)
-    ret_ks <- c(p_value, coef_lm, cor_est)
-    return(ret_ks)
+
+is_contiguous <- function(x) {
+  rle_x <- rle(x)
+  length(unique(rle_x$values)) == length(rle_x$values)
 }
+
+
+cortest <- function(intput_dat, y, cov.mod = NULL, a, b) {
+  set.seed(123)
+  aa <- intput_dat[a:b, ]
+  
+  # Handle case when there's only one row
+  if (nrow(aa) <= 1) {
+    op.num <- 1
+  } else {
+    cls.num <- NULL
+    unique_points <- nrow(aa[, -c(1, 2)])
+    max_possible_k <- min(unique_points - 1, 4)
+    
+    # Only try k values that are valid
+    possible_ks <- 1:max_possible_k
+    possible_ks <- possible_ks[possible_ks > 0 & possible_ks <= unique_points]
+    
+    for (k in possible_ks) {
+      cls <- tryCatch(
+        {
+          kmeans(aa[, -c(1, 2)], centers = k)
+        },
+        error = function(e) NULL
+      )
+      
+      if (!is.null(cls) && is_contiguous(as.numeric(cls$cluster))) {
+        cls.num <- c(cls.num, k)
+      }
+    }
+    
+    op.num <- ifelse(length(cls.num) > 0, max(cls.num), 1)
+  }
+  
+  # Final clustering with optimal number of clusters
+  if (op.num > 1) {
+    cls.op <- kmeans(aa[, -c(1, 2)], centers = op.num)
+    x.mean <- cls.op$centers
+    NR <- nrow(x.mean)
+    x <- as.numeric(unlist(x.mean))
+  } else {
+    x <- as.numeric(colMeans(aa[, -c(1, 2)]))
+    NR <- 1
+  }
+  
+  # Prepare data for linear model
+  y <- rep(as.numeric(y[, 1]), each = NR)
+  
+  if (!is.null(cov.mod)) {
+    lm.dat <- data.frame(y, x, cov.mod[rep(seq_len(nrow(cov.mod)), each = NR), ])
+  } else {
+    lm.dat <- data.frame(y, x)
+  }
+  
+  # Fit linear model
+  fit <- summary(lm(y ~ ., data = lm.dat))
+  p_value <- fit$coef[2, 4]
+  coef_lm <- fit$coef[2, 1]
+  cor_est <- cor(lm.dat$y, lm.dat$x) 
+  
+  return(c(p_value, coef_lm, cor_est))
+}
+
+
 
 
 calcSingleDiffSum <- function(intput_dat, y) {
