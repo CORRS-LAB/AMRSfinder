@@ -53,7 +53,7 @@ The detailed description of the above output is in the following:
 |:-----|:--------|
 | chr | Chromosome | 
 | start | The start position of a methylation region. | 
-| end | The start position of a methylation region. | 
+| end | The end position of a methylation region. | 
 | N.CpGs | The number of CpG sites.|
 | cor_est | The estimated correlation coefficient. | 
 | coef_lm | The methylation coefficient derived from linear regression analysis. | 
@@ -84,3 +84,4 @@ graph TD;
   D --> E["100bp (Identifying AMRs)"]
   A --> F["AMRfinder"]
 ```
+
